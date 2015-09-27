@@ -1,0 +1,9 @@
+$def with (formword)
+
+<h1> Amagram generator </h1><br>
+Please enter your word<br><br>
+<form name="main" method="post"> 
+$if not formword.valid: <p class="error">Try again:</p>
+$:formword.render()
+<input type="submit" />    </form>
+<hl>
