@@ -1,9 +1,9 @@
-$def with (formword)
+$def with (form)
 
-<h1> Amagram generator </h1><br>
+<h1> Anagram generator </h1><br>
 Please enter your word<br><br>
 <form name="main" method="post"> 
-$if not formword.valid: <p class="error">Try again:</p>
-$:formword.render()
+$if not form.valid: <p class="error">Try again:</p>
+$:form.render()
 <input type="submit" />    </form>
-<hl>
+----
