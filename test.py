@@ -1,25 +1,31 @@
 # test
 import web
+from web import form
 
-urls = (
-    '/', 'index'
-)
+urls = ('/', 'index')
+app = web.application(urls, globals())
 
-class index:
-    def GET(self):
-        print "Enter a word."
+render = web.template.render('tmpl/')
 
-        formword = form.Form(
-            form.Textbox('Word'),
-            form.Button('Submit')
-        )
+myform = form.Form( 
+    form.Textbox("Word"), )
 
-        f = formword()
-        print f.render()
+class index: 
+    def GET(self): 
+        form = myform()
+        # make sure you create a copy of the form by calling it (line above)
+        # Otherwise changes will appear globally
+        return render.formtemplate(form)
 
-        return "Complete."
+    def POST(self): 
+        form = myform() 
+        if not form.validates(): 
+            return render.formtemplate(form)
+        else:
+            # form.d.boe and form['boe'].value are equivalent ways of
+            # extracting the validated arguments from the form.
+            return "Word : %s " % (form.d.Word)
 
 if __name__ == "__main__":
-    app = web.application(urls, globals())
     app.run()
 
