@@ -1,4 +1,3 @@
-## $Id$
 ## web.py app to output anagrams
 
 from collections import defaultdict
@@ -41,26 +40,17 @@ class index:
             return render.formtemplate(form_word)
 
         else:
-            sorted_word = 'dog'
             anagram_list=set()
-            anagram_list.add("cat")
-
-            print sorted_word
-            print anagram_list
-
             sorted_word = ''.join(sorted(form_word.d.Word))
 
             if word_anagrams[sorted_word]:
                 for word in word_anagrams[sorted_word]:
-                    ## print("Possible Word for Scrambled Word: {}".form_wordat(word))
                     anagram_list.add(word)
 
             else:
                 anagram_list.add("No anagrams found.")
 
             return(anagram_list)
-
-            ## return "Results : %s " % (form_word.d.Word)
 
 if __name__ == "__main__":
     app.run()
